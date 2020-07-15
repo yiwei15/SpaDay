@@ -8,8 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SpaDay.Controllers
 {
+    
     public class SpaController : Controller
     {
+        
+
+        //Contains the logic to determine which facial treatments are appropriate for which skin type.
         public bool CheckSkinType(string skinType, string facialType)
         {
 
@@ -33,19 +37,27 @@ namespace SpaDay.Controllers
 
         }
 
+        //Returns the Spa/Index view when GET requests are made to /spa/.
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        //Returns the Spa/Menu view when POST requests are made to /spa/
         [HttpPost]
         [Route("/spa")]
         public IActionResult Menu(string name, string skintype, string manipedi)
         {
+            ViewBag.name = name;
+            ViewBag.skintype = skintype;
+            ViewBag.manipedi = manipedi;
+            
             List<string> facials = new List<string>()
             {
                 "Microdermabrasion", "Hydrofacial", "Rejuvenating", "Enzyme Peel"
             };
+
 
             List<string> appropriateFacials = new List<string>();
             for (int i = 0; i < facials.Count; i++)
@@ -55,9 +67,11 @@ namespace SpaDay.Controllers
                     appropriateFacials.Add(facials[i]);
                 }
             }
+
+            ViewBag.appropriateFacials = appropriateFacials;
+
             return View();
         }
-
 
     }
 }
