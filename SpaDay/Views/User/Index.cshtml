@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Welcome, @ViewBag.user.Username!</h1>
+
+
+
+<p>
+    <a asp-controller="spa" asp-action="index"> Select Spa Services</a>
+</p>
+
+<div>
+    <h4>Account Detail</h4>
+    <p>Username: @ViewBag.user.Username </p>
+    <p>Email: @ViewBag.user.Email</p>
+    <p>Enrollment date: @ViewBag.user.JoinDate</p>
+</div>
